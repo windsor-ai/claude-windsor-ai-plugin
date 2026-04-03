@@ -1,3 +1,8 @@
+---
+name: campaign-report
+description: Generate a quick campaign performance report from any connected data source
+---
+
 # /campaign-report
 
 Generate a quick campaign performance report from any connected data source.

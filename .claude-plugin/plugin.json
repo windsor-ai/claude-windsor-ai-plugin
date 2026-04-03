@@ -7,7 +7,7 @@
     "email": "support@windsor.ai",
     "url": "https://windsor.ai"
   },
-  "repository": "https://github.com/windsorai/claude-code-plugin",
+  "repository": "https://github.com/windsor-ai/claude-windsor-ai-plugin",
   "homepage": "https://windsor.ai",
   "keywords": [
     "data",
@@ -25,11 +25,5 @@
     "stripe",
     "business-intelligence"
   ],
-  "license": "MIT",
-  "components": {
-    "commands": ["commands/"],
-    "agents": ["agents/"],
-    "skills": ["skills/"],
-    "mcpServers": [".mcp.json"]
-  }
+  "license": "MIT"
 }
