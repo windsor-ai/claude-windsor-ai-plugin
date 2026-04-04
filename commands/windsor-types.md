@@ -1,3 +1,8 @@
+---
+name: windsor-types
+description: Generate TypeScript type definitions for a Windsor.ai connector's data schema
+---
+
 # /windsor-types
 
 Generate TypeScript type definitions for a Windsor.ai connector's data schema.

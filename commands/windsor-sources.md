@@ -1,3 +1,8 @@
+---
+name: windsor-sources
+description: Show all connected data sources and what data is available from each
+---
+
 # /windsor-sources
 
 Show all connected data sources and what data is available from each.
