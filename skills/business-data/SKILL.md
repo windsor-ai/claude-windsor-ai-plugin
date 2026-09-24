@@ -1,4 +1,6 @@
 ---
+name: business-data
+description: Pull and combine business data from any of the 350+ sources connected to Windsor.ai inside a coding workflow, for example writing campaign or CRM data to a local JSON or CSV file, generating typed data for a dashboard, or joining ad spend with revenue. Use when the user wants Windsor.ai data in code or files rather than a one-off report.
 disable-model-invocation: false
 ---
 

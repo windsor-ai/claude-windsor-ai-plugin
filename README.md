@@ -39,6 +39,22 @@ After installing, you'll be prompted to authenticate with your Windsor.ai accoun
 | `/windsor-sources` | List all connected platforms and available fields |
 | `/windsor-types` | Generate TypeScript type definitions for a connector |
 
+## Skills
+
+Claude loads these automatically when a request matches, or you can call them by name.
+
+| Skill | Use it for |
+|-------|------------|
+| `/windsor-insights` | Reports, rankings, comparisons and trends from any connected source |
+| `/windsor-manage` | Confirmed changes: pause or enable, budgets, bids, audiences, flows |
+| `/windsor-create` | Creating campaigns, ads or posts, always after you approve the draft |
+| `/windsor-connect` | Connecting or reconnecting an account and checking what is connected |
+| `/windsor-export` | Recurring exports to Sheets, BigQuery, Snowflake and other destinations |
+| `/google-ads`, `/facebook-ads`, `/tiktok-ads`, `/linkedin-ads`, `/microsoft-ads` | Platform-specific reporting and campaign management |
+| `/instagram` | Instagram organic insights, publishing and comment moderation |
+| `/google-analytics-4`, `/google-search-console` | Web analytics and search performance |
+| `/business-data` | Windsor.ai data inside code: files, typed data, dashboards |
+
 ## Agent
 
 The **Business Data Analyst** agent handles multi-step work: cross-platform comparisons, ETL pipelines and dashboard data integration.
