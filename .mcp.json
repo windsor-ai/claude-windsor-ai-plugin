@@ -1,6 +1,6 @@
 {
   "windsor-ai": {
-    "type": "url",
+    "type": "http",
     "url": "https://mcp.windsor.ai",
     "description": "Windsor.ai: ad, social, analytics and business data from 350+ sources, plus write actions on Google Ads, Meta Ads, Instagram, TikTok Ads, LinkedIn Ads and Microsoft Ads"
   }
