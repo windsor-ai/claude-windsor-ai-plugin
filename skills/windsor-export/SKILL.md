@@ -1,6 +1,6 @@
 ---
 name: windsor-export
-description: Set up and review recurring exports of data from any source connected to Windsor.ai to warehouses, databases, spreadsheets, or cloud storage (BigQuery, Snowflake, Google Sheets, PostgreSQL, S3, and more). Use for scheduled, daily, weekly, or automated exports and syncs. Do not use for a one-off answer.
+description: Set up and review recurring exports and syncs of data from any source connected to Windsor.ai (ads, organic social, analytics, CRM, e-commerce, finance) to warehouses, databases, spreadsheets, BI tools, or cloud storage - BigQuery, Snowflake, Redshift, PostgreSQL, MySQL, Google Sheets, Looker Studio, Amazon S3, and more. Use for scheduled, daily, hourly, weekly, or automated exports, data pipelines, and reporting feeds, and to check the status of existing export tasks. Do not use for a one-off answer in the conversation.
 ---
 
 # Export connected data on a schedule

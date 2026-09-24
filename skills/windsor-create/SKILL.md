@@ -1,6 +1,6 @@
 ---
 name: windsor-create
-description: Create new items on platforms connected to Windsor.ai that support create actions - campaigns, ad groups, and responsive search ads on Google Ads; campaigns, ad sets, and ads on Meta Ads; image, carousel, video, and story posts on Instagram; posts on Facebook Pages, LinkedIn Pages, Threads, and Google Business Profile; flows on Klaviyo; records on Salesforce; contacts and invoices on GoHighLevel; customers and subscriptions on Stripe. Use when the user wants to create, publish, post, or launch something new. Collect inputs, show the full draft, create only after confirmation.
+description: Create and publish new items on platforms connected to Windsor.ai - campaigns, ad groups, and responsive search ads on Google Ads; campaigns, ad sets, ads, and boosted posts on Meta Ads; image, carousel, video (Reels), and story posts and comments on Instagram; posts on Facebook Pages, LinkedIn Pages, Threads, and Google Business Profile; flows on Klaviyo; records on Salesforce; contacts and invoices on GoHighLevel; customers and subscriptions on Stripe; pages and posts on WordPress. Use when the user wants to create, make, build, launch, draft, publish, post, or schedule something new. Collect inputs, show the full draft, and create only after explicit confirmation.
 ---
 
 # Create on connected platforms

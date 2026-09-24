@@ -1,6 +1,6 @@
 ---
 name: windsor-connect
-description: Connect, reconnect, or add accounts for any of the 350+ sources Windsor.ai supports (ads, organic social, web analytics, SEO, CRM, e-commerce, payments, accounting, files, warehouses) and resolve which connected account a request means. Use when the user wants to connect a source, asks what is connected or available, or hits a permission error. Do not use for analysis or changes.
+description: Connect, reconnect, or add accounts for any of the 350+ sources Windsor.ai supports - Google Ads, Meta Ads, TikTok Ads, LinkedIn Ads, Microsoft Ads, Amazon Ads, Instagram, Facebook Pages, LinkedIn Pages, YouTube, TikTok, Google Business Profile, GA4, Search Console, HubSpot, Salesforce, Pipedrive, GoHighLevel, Shopify, Amazon Seller Central, Klaviyo, Stripe, QuickBooks, Xero, BigQuery, Snowflake, Google Sheets, and more - and resolve which connected account a request means. Use when the user wants to connect or set up a source, asks what is connected or available, sees no data, or hits a permission or sign-in error. Do not use for analysis or changes.
 ---
 
 # Connect data sources
