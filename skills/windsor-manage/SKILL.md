@@ -1,6 +1,6 @@
 ---
 name: windsor-manage
-description: Make confirmed changes on platforms connected to Windsor.ai that support write actions - pause or enable campaigns, ad sets or ad groups, and ads; set budgets and bids; push negative keywords and manage audience lists on ad platforms; manage Klaviyo flows; update Amazon Seller Central listings; edit Google Business Profile listings and reply to reviews; hide, unhide, or delete Instagram comments; update or delete Salesforce records and update GoHighLevel contacts. Use when the user wants to pause, enable, set, update, or change something. Always read first, confirm the exact change, then execute. Do not use for reporting only.
+description: Make confirmed changes on platforms connected to Windsor.ai - pause or enable campaigns, ad sets, ad groups, and ads and set budgets and bids on Google Ads, Meta Ads, TikTok Ads, LinkedIn Ads, Microsoft Ads, and Amazon Ads; push negative keywords and manage Customer Match lists on Google Ads; cut wasted spend on underperforming campaigns; hide, unhide, reply to, or delete Instagram comments; edit Google Business Profile listings, hours, and posts and reply to reviews; update or delete Salesforce records and update GoHighLevel contacts; set Klaviyo flow status; update Amazon Seller Central listings. Use when the user wants to pause, enable, stop, resume, set, raise, lower, fix, optimize, update, or delete something. Always read first, confirm the exact change, then execute. Do not use for reporting only.
 ---
 
 # Manage connected platforms
