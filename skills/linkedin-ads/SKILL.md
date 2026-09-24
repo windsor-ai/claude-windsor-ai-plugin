@@ -62,6 +62,9 @@ below as guidance:
   have a schedule end date.
 - **`set_campaign_group_budget`** — params: `campaign_group_id`, `amount`
   (total budget only; the campaign group must have a schedule end date).
+- Newer actions such as `rename_campaign`, `set_campaign_schedule`,
+  `set_campaign_targeting`, and `create_creative` are also listed today; build
+  their params only from the schema `list_actions` returns, and confirm first.
 
 Budget mechanics:
 

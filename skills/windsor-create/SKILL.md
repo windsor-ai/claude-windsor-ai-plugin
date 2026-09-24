@@ -1,11 +1,11 @@
 ---
 name: windsor-create
-description: Create new items on platforms connected to Windsor.ai that support create actions - campaigns, ad groups, and responsive search ads on Google Ads; campaigns, ad sets, and ads on Meta Ads; image posts on Instagram; posts on Google Business Profile; flows on Klaviyo. Use when the user wants to create, publish, post, or launch something new. Collect inputs, show the full draft, create only after confirmation.
+description: Create new items on platforms connected to Windsor.ai that support create actions - campaigns, ad groups, and responsive search ads on Google Ads; campaigns, ad sets, and ads on Meta Ads; image, carousel, video, and story posts on Instagram; posts on Facebook Pages, LinkedIn Pages, Threads, and Google Business Profile; flows on Klaviyo; records on Salesforce; contacts and invoices on GoHighLevel; customers and subscriptions on Stripe. Use when the user wants to create, publish, post, or launch something new. Collect inputs, show the full draft, create only after confirmation.
 ---
 
 # Create on connected platforms
 
-Create new items on connected accounts through Windsor.ai. Create actions currently exist on a subset of Meta Ads (facebook), Google Ads (google_ads), TikTok Ads (tiktok), LinkedIn Ads (linkedin), Microsoft Ads (bing), Instagram (instagram), Google Business Profile (google_my_business), Klaviyo (klaviyo), Amazon Seller Central (amazon_sp); the available create actions and their required fields are whatever list_actions returns for the connector.
+Create new items on connected accounts through Windsor.ai. Create actions currently exist on a subset of Meta Ads (facebook), Google Ads (google_ads), TikTok Ads (tiktok), LinkedIn Ads (linkedin), Microsoft Ads (bing), Amazon Ads (amazon_ads), Instagram (instagram), Facebook Pages (facebook_organic), LinkedIn Pages (linkedin_organic), Threads (threads), Google Business Profile (google_my_business), Klaviyo (klaviyo), Amazon Seller Central (amazon_sp), Salesforce (salesforce), GoHighLevel (gohighlevel), Stripe (stripe), WordPress (wordpress); the available create actions and their required fields are whatever list_actions returns for the connector.
 
 ## Non-negotiable contract
 - Interpret create, make, build, publish, post, and launch as a creation request for this skill.
@@ -21,6 +21,7 @@ Create new items on connected accounts through Windsor.ai. Create actions curren
 ## Rules
 - Created ad objects start paused where the platform supports it; say so, and offer /windsor-manage to enable them once reviewed.
 - Responsive search ads need 3 to 15 headlines, 2 to 4 descriptions, and a final URL; collect them before building params.
+- Invoices and subscriptions bill a real customer; never create one with placeholder amounts, and show the amount, currency, and customer in the confirmation.
 - Instagram image posts need a publicly reachable image URL and a caption; Google Business Profile posts need the location and the post text. Show the exact text that will be published.
 - Never invent budgets, bids, or copy; ask for them, then confirm the exact values. If the user wants creative help, draft it as text for approval first.
 - If execute_action reports that write actions are not enabled, send the user to https://onboard.windsor.ai/app/settings/account and retry after they confirm.

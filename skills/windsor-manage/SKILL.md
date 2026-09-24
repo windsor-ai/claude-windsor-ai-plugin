@@ -1,11 +1,11 @@
 ---
 name: windsor-manage
-description: Make confirmed changes on platforms connected to Windsor.ai that support write actions - pause or enable campaigns, ad sets or ad groups, and ads; set budgets and bids; push negative keywords and manage audience lists on ad platforms; manage Klaviyo flows; update Amazon Seller Central listings; edit Google Business Profile listings and reply to reviews. Use when the user wants to pause, enable, set, update, or change something. Always read first, confirm the exact change, then execute. Do not use for reporting only.
+description: Make confirmed changes on platforms connected to Windsor.ai that support write actions - pause or enable campaigns, ad sets or ad groups, and ads; set budgets and bids; push negative keywords and manage audience lists on ad platforms; manage Klaviyo flows; update Amazon Seller Central listings; edit Google Business Profile listings and reply to reviews; hide, unhide, or delete Instagram comments; update or delete Salesforce records and update GoHighLevel contacts. Use when the user wants to pause, enable, set, update, or change something. Always read first, confirm the exact change, then execute. Do not use for reporting only.
 ---
 
 # Manage connected platforms
 
-Make confirmed changes on connected accounts through Windsor.ai. Write actions currently exist on Meta Ads (facebook), Google Ads (google_ads), TikTok Ads (tiktok), LinkedIn Ads (linkedin), Microsoft Ads (bing), Instagram (instagram), Google Business Profile (google_my_business), Klaviyo (klaviyo), Amazon Seller Central (amazon_sp). The exact set is whatever list_actions returns for the connector; it changes over time, so never assume an action exists.
+Make confirmed changes on connected accounts through Windsor.ai. Write actions currently exist on Meta Ads (facebook), Google Ads (google_ads), TikTok Ads (tiktok), LinkedIn Ads (linkedin), Microsoft Ads (bing), Amazon Ads (amazon_ads), Instagram (instagram), Facebook Pages (facebook_organic), LinkedIn Pages (linkedin_organic), Threads (threads), Google Business Profile (google_my_business), Klaviyo (klaviyo), Amazon Seller Central (amazon_sp), Salesforce (salesforce), GoHighLevel (gohighlevel), Stripe (stripe), WordPress (wordpress). The exact set is whatever list_actions returns for the connector; it changes over time, so never assume an action exists.
 
 ## Non-negotiable contract
 - Interpret pause, enable, stop, resume, set, raise, lower, update, and change as a write request for this skill.
@@ -21,6 +21,7 @@ Make confirmed changes on connected accounts through Windsor.ai. Write actions c
 5. After an explicit yes, call execute_action once and report the result, including anything the platform returned.
 
 ## Rules that prevent wrong writes
+- Deletes (a Salesforce record, an Instagram comment, a Google Ads Customer Match list) cannot be undone; name the item and its id in the confirmation, and prefer hiding over deleting a comment unless the user asks to delete.
 - Budgets, bids, and targets are absolute values, not deltas. To raise a budget by 20 percent, read the current value, compute the new absolute amount, and set that.
 - Google Ads money is in micros (50.00 = 50000000). Convert the user's amount and show both in the confirmation.
 - If the user says "pause the worst one", first run the read and ranking (or hand it to /windsor-insights), then name the specific item and confirm before writing.

@@ -6,8 +6,8 @@ description: Analyze Google Analytics 4 (GA4) data through Windsor.ai. Use when 
 # Google Analytics 4 (GA4) via Windsor.ai
 
 Windsor.ai pulls live **read-only** GA4 report data through the Google Analytics
-Data API. The connector id is `googleanalytics4`. Pass `googleanalytics4` as the connector on every tool call; the Windsor.ai server serves all
-connectors, so it is never implied.
+Data API. The connector id is `googleanalytics4`. Pass `googleanalytics4` as the connector on every tool call; the Windsor.ai server
+serves all connectors, so it is never implied.
 
 This connector is **read-only analytics**: it reports GA4 metrics and dimensions.
 It has **no advertising cost/ROAS data** (that lives in the ad-platform

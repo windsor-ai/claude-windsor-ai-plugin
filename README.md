@@ -38,6 +38,12 @@ After installing, you'll be prompted to authenticate with your Windsor.ai accoun
 | `/instagram-report` | Instagram posts from the last 30 days by reach, saves and follows, against the account average |
 | `/windsor-sources` | List all connected platforms and available fields |
 | `/windsor-types` | Generate TypeScript type definitions for a connector |
+| `/setup` | Sign in, connect a first account and run a first report |
+| `/performance-review` | Cross-platform review of ads, organic, analytics, CRM and revenue against the previous period |
+| `/wasted-spend` | Non-converting spend across all ad platforms, fixed after you approve |
+| `/social-report` | Organic results across Instagram, Facebook Pages, LinkedIn Pages, TikTok and YouTube |
+| `/pipeline-report` | CRM pipeline by stage, value and owner |
+| `/revenue-report` | Weekly revenue, orders and refunds from commerce and finance sources |
 
 ## Skills
 
@@ -45,19 +51,26 @@ Claude loads these automatically when a request matches, or you can call them by
 
 | Skill | Use it for |
 |-------|------------|
+| `/windsor-get-started` | Sign in, see what is connected, connect a first account, first report |
 | `/windsor-insights` | Reports, rankings, comparisons and trends from any connected source |
-| `/windsor-manage` | Confirmed changes: pause or enable, budgets, bids, audiences, flows |
-| `/windsor-create` | Creating campaigns, ads or posts, always after you approve the draft |
-| `/windsor-connect` | Connecting or reconnecting an account and checking what is connected |
+| `/windsor-optimize` | Find and fix wasted ad spend across all ad platforms, with approval |
+| `/windsor-manage` | Confirmed changes: pause or enable, budgets, bids, audiences, records, comments |
+| `/windsor-create` | Campaigns, ads, posts, flows, CRM records, always after you approve the draft |
+| `/windsor-connect` | Connecting or reconnecting accounts and checking what is connected |
 | `/windsor-export` | Recurring exports to Sheets, BigQuery, Snowflake and other destinations |
-| `/google-ads`, `/facebook-ads`, `/tiktok-ads`, `/linkedin-ads`, `/microsoft-ads` | Platform-specific reporting and campaign management |
-| `/instagram` | Instagram organic insights, publishing and comment moderation |
-| `/google-analytics-4`, `/google-search-console` | Web analytics and search performance |
+| `/google-ads`, `/facebook-ads`, `/tiktok-ads`, `/linkedin-ads`, `/microsoft-ads` | Paid ads reporting and campaign management |
+| `/instagram`, `/facebook-organic`, `/linkedin-pages`, `/tiktok-organic`, `/youtube` | Organic social insights, publishing and comment moderation |
+| `/social-media-insights`, `/social-media-create` | Cross-platform organic reporting and posting |
+| `/google-analytics-4`, `/google-search-console`, `/web-analytics-insights` | Web analytics and search performance |
+| `/hubspot`, `/gohighlevel`, `/crm-insights`, `/crm-manage` | CRM pipeline, contacts and confirmed record changes |
+| `/klaviyo`, `/google-merchant-center`, `/ecommerce-insights`, `/ecommerce-manage` | E-commerce, email flows, product feeds and listings |
+| `/finance-insights` | Revenue, payments and accounting (Stripe, QuickBooks, Xero and more) |
 | `/business-data` | Windsor.ai data inside code: files, typed data, dashboards |
 
-## Agent
+## Agents
 
-The **Business Data Analyst** agent handles multi-step work: cross-platform comparisons, ETL pipelines and dashboard data integration.
+- **Marketing Analyst** handles multi-step performance work across ads, organic, analytics, CRM and revenue: diagnosing a drop, finding what drives results, weekly reviews with recommended changes.
+- **Business Data Analyst** handles developer work: cross-platform data pulls, ETL pipelines and dashboard data integration.
 
 ## Supported Data Sources
 
