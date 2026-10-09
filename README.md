@@ -59,7 +59,8 @@ Claude loads these automatically when a request matches, or you can call them by
 | `/windsor-connect` | Connecting or reconnecting accounts and checking what is connected |
 | `/windsor-export` | Recurring exports to Sheets, BigQuery, Snowflake and other destinations |
 | `/google-ads`, `/facebook-ads`, `/tiktok-ads`, `/linkedin-ads`, `/microsoft-ads` | Paid ads reporting and campaign management |
-| `/instagram`, `/facebook-organic`, `/linkedin-pages`, `/tiktok-organic`, `/youtube` | Organic social insights, publishing and comment moderation |
+| `/instagram`, `/facebook-organic`, `/linkedin-pages`, `/tiktok-organic`, `/youtube`, `/google-business-profile` | Organic social and local-listing insights, publishing and comment/review moderation |
+| `/instagram-public` | Public/competitor Instagram profile and post lookup |
 | `/social-media-insights`, `/social-media-create` | Cross-platform organic reporting and posting |
 | `/google-analytics-4`, `/google-search-console`, `/web-analytics-insights` | Web analytics and search performance |
 | `/hubspot`, `/gohighlevel`, `/crm-insights`, `/crm-manage` | CRM pipeline, contacts and confirmed record changes |
