@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-  <title>Windsor.ai</title>
-  <circle cx="256" cy="256" r="256" fill="#0E2640"/>
-  <g transform="translate(78 146) scale(8.5)">
-    <path d="M31.92 59.28L24 33.336L28.968 33.36L34.392 51.144L39.864 33.36H44.184L49.656 51.144L55.08 33.36H60.024L52.104 59.28H48.072L42.024 40.512L35.952 59.28H31.92Z" transform="translate(-24 -33.336)" fill="#FFFFFF"/>
-  </g>
-  <circle cx="412" cy="355" r="22" fill="#FFFFFF"/>
-</svg>
