@@ -44,6 +44,8 @@ After installing, you'll be prompted to authenticate with your Windsor.ai accoun
 | `/social-report` | Organic results across Instagram, Facebook Pages, LinkedIn Pages, TikTok and YouTube |
 | `/pipeline-report` | CRM pipeline by stage, value and owner |
 | `/revenue-report` | Weekly revenue, orders and refunds from commerce and finance sources |
+| `/optimization-review` | Read-only review of every connected ad account ending in numbered proposals; safe to run unattended |
+| `/pacing` | Month-to-date spend against budget for every account, client or brand |
 
 ## Skills
 
@@ -70,7 +72,9 @@ Claude loads these automatically when a request matches, or you can call them by
 
 ## Agents
 
-- **Marketing Analyst** handles multi-step performance work across ads, organic, analytics, CRM and revenue: diagnosing a drop, finding what drives results, weekly reviews with recommended changes.
+- **Marketing Analyst** handles multi-step performance work for one business or client across ads, organic, analytics and revenue: diagnosing a drop, finding what drives results, weekly reviews with recommended changes.
+- **Portfolio Analyst** runs the same review across many accounts at once — every client of an agency, or every brand, site, location or market of one business — and returns one row per entity with flags and proposed changes. Read-only.
+- **Attribution Analyst** joins ad spend to analytics, CRM, store and accounting records to show which channels produce leads, customers and revenue, and reports how much of the data actually matched. Read-only.
 - **Business Data Analyst** handles developer work: cross-platform data pulls, ETL pipelines and dashboard data integration.
 
 ## Supported Data Sources
@@ -109,6 +113,12 @@ Claude loads these automatically when a request matches, or you can call them by
 > Pull last 7 days of Google Ads campaign data and write it to src/data/campaigns.json
 
 > Generate TypeScript types for our Salesforce data
+
+> Check all my clients' Google Ads accounts for anything that broke this week
+
+> Which of our brands will overspend this month?
+
+> Cost per new customer by channel last quarter, matching HubSpot deals to QuickBooks invoices
 ```
 
 ## Troubleshooting

@@ -8,7 +8,7 @@ description: Find and fix wasted ad spend across Google Ads, Meta Ads, TikTok Ad
 Find spend that is not paying off, show the evidence, and apply the fixes the user approves.
 
 ## 1. Scope
-- Call `get_connectors` and list the connected ad accounts. Ask which accounts to include if there are several; default to all.
+- Call `get_connectors` and list the connected ad accounts. Ask which accounts to include if there are several; default to all. If there are more than five accounts or several clients, delegate the read to the portfolio-analyst agent instead of reading them all here.
 - Use the last 30 days unless the user gives a range. State the currency per account and never sum across currencies.
 
 ## 2. Find waste, per platform
@@ -30,3 +30,4 @@ Present one table per account: item, spend, conversions, cost per conversion, su
 ## Hand-offs
 - Reporting only -> /windsor-insights
 - Creating replacement campaigns or ads -> /windsor-create
+- More than five accounts or several clients at once -> portfolio-analyst agent
