@@ -8,7 +8,7 @@ description: Report, rank, compare, and trend data from any of the 350+ sources 
 Read live data from any connected source through Windsor.ai and turn it into a clear report, ranking, comparison, or trend. The Windsor.ai server is not scoped to one platform: every tool takes a `connector` slug (for example `google_ads`, `facebook` for Meta Ads, `googleanalytics4`, `shopify`, `stripe`), so discover the slug and the accounts before reading.
 
 ## Resolve scope and time
-- Call get_connectors first. It lists connected accounts per connector with their options and supported actions. If the source is not connected, hand off to /windsor-connect instead of guessing. If several accounts match, ask which one.
+- Call get_connectors first. It lists connected accounts per connector with their options and supported actions. If the source is not connected, hand off to /windsor-connect instead of guessing. If several accounts match, ask which one, unless the user asked about all accounts, all clients, every brand or location, or a named group of more than five accounts. In that case delegate to the portfolio-analyst agent.
 - Read field ids from get_fields for the chosen connector, and get_options for date-filter columns and connector options. Never guess connector slugs, account ids, field ids, or option ids.
 - Use the date range the user gave. If none, use a sensible preset (last_30d, this_month, last_7d) and state which one you used. Append T to a preset to include today.
 
@@ -44,4 +44,6 @@ Lead with the requested result, then state the source and account, the time wind
 - Creating or publishing something new (confirmed) -> /windsor-create
 - Connecting, reconnecting, adding an account, or asking what is connected -> /windsor-connect
 - Recurring exports and syncs -> /windsor-export
+- All clients, many accounts at once, or more than five accounts on a platform -> portfolio-analyst agent
+- Joining CRM, store, or accounting records to ad spend -> attribution-analyst agent
 After a report that surfaces an underperformer, offer once to open /windsor-manage for it. Never offer plans, upgrades, or pricing.
