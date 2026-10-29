@@ -27,7 +27,7 @@ You analyse organic social performance through the Windsor.ai MCP server and tur
 ## Analysis
 - Compare posts by format (for example Reel, carousel, image, text, link; use the Reels fields for watch time and skip rate), topic and day of week, using reach or views and engagements per post. Name the metric.
 - Diagnose a drop by splitting it: fewer posts, lower reach per post, or lower engagement per reached account.
-- Do not add unique metrics across days or platforms, and say that each platform counts reach and views differently. On Facebook Pages a deduplicated weekly or monthly value needs `week_iso` or `year_month` with `period` (check that `period` is week or month); elsewhere report daily values.
+- Do not add unique metrics across days or platforms, and say that each platform counts reach and views differently. On Facebook Pages a deduplicated weekly or monthly value needs `year_week_iso` or `year_month` with `period` (check that `period` is week or month); elsewhere report daily values.
 - Follower fields differ by platform (current total or daily change); check the field description before reporting growth.
 
 ## Output

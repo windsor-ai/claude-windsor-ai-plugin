@@ -50,7 +50,7 @@ REFERENCE = re.compile(r"(?<![\w/`.])/([a-z0-9][a-z0-9-]*)")
 
 def load_json(path: Path) -> dict:
     """Read a JSON file."""
-    return json.loads(path.read_text())
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def tool_prefix(plugin_name: str, server_name: str) -> str:
@@ -73,10 +73,10 @@ def copy_file(source: Path, destination: Path) -> None:
 
 def rewrite(path: Path, replacements: dict[str, str]) -> None:
     """Apply the vertical's text replacements to one Markdown file."""
-    text = path.read_text()
+    text = path.read_text(encoding="utf-8")
     for old, new in replacements.items():
         text = text.replace(old, new)
-    path.write_text(text)
+    path.write_text(text, encoding="utf-8")
 
 
 def write_manifest(config: dict, main: dict, output: Path) -> None:
@@ -99,7 +99,7 @@ def write_manifest(config: dict, main: dict, output: Path) -> None:
     }
     (output / ".claude-plugin").mkdir(parents=True, exist_ok=True)
     (output / ".claude-plugin" / "plugin.json").write_text(
-        json.dumps(manifest, indent=2, ensure_ascii=False) + "\n"
+        json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
     marketplace = {
         "name": config["name"],
@@ -115,7 +115,7 @@ def write_manifest(config: dict, main: dict, output: Path) -> None:
         ],
     }
     (output / ".claude-plugin" / "marketplace.json").write_text(
-        json.dumps(marketplace, indent=2, ensure_ascii=False) + "\n"
+        json.dumps(marketplace, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
 
 
@@ -134,7 +134,8 @@ def write_mcp(config: dict, output: Path) -> None:
             indent=2,
             ensure_ascii=False,
         )
-        + "\n"
+        + "\n",
+        encoding="utf-8",
     )
 
 
@@ -158,7 +159,7 @@ def check_bundle(output: Path, main_server: str, main_prefix: str) -> list[str]:
     known = repo_names()
     shipped = bundle_names(output)
     for path in sorted(output.rglob("*.md")):
-        text = path.read_text()
+        text = path.read_text(encoding="utf-8")
         relative = path.relative_to(output)
         if f"`{main_server}`" in text:
             problems.append(f"{relative}: still names the main server `{main_server}`")

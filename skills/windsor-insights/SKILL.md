@@ -27,7 +27,7 @@ Read live data from any connected source through Windsor.ai and turn it into a c
 
 ## Platform notes
 - Google Ads: `spend`, `cost`, `cpc`, `cost_per_conversion` and `budget_amount` are in the account currency; only fields whose id ends in `_micros` are in micros (1,000,000 = 1.00). Search terms cannot be requested together with keyword fields, so read them in separate calls.
-- Meta Ads, Facebook Pages, Instagram: reach and other unique metrics are deduplicated over the period; use `year_week` or `year_month` for weekly or monthly totals instead of summing daily rows (the plain `week` and `month` fields merge years). Facebook Pages returns one broken-down metric per request.
+- Meta Ads, Facebook Pages, Instagram: reach and other unique metrics are deduplicated over the period; use `year_week_iso` or `year_month` for weekly or monthly totals instead of summing daily rows (the plain `week` and `month` fields merge years). Facebook Pages returns one broken-down metric per request.
 - GA4: conversions are key events; there is no cost data, so join ad spend from the ad connectors for ROAS.
 - Search Console: data lags about two to three days; position is an average (lower is better) and CTR is clicks / impressions.
 - CRM (HubSpot, Salesforce, Pipedrive, GoHighLevel): deal value is in the account currency; stage and close-date fields differ per CRM, so read them from get_fields.

@@ -15,7 +15,7 @@ Write actions today are `create_post`, `create_photo_post` and `upload_photo`. T
 3. Call `get_data` with the fields, the Page and a date range.
 
 Fields that are easy to misread:
-- Unique metrics (reach and unique views) are deduplicated per period. For weekly or monthly unique values, request `week_iso` or `year_month` together with `period`, and check that `period` is week or month in the result; do not sum daily rows.
+- Unique metrics (reach and unique views) are deduplicated per period. For weekly or monthly unique values, request `year_week_iso` or `year_month` together with `period`, and check that `period` is week or month in the result; do not sum daily rows.
 - `post_impressions_unique` and `page_impressions_unique` are deprecated; use `post_total_media_view_unique` and `page_total_media_view_unique`, which return the same values.
 - `page_follows` is the lifetime total; `page_daily_follows_unique` and `page_daily_unfollows_unique` are daily changes.
 - `post_engagements` is reactions plus comments plus shares on a post.

@@ -23,7 +23,7 @@ Read live organic social data through Windsor.ai and turn it into a clear report
 
 ## Accuracy guardrails
 - Each platform defines reach, impressions, views and engagement in its own way. Say so when comparing platforms, and do not add them together as if they were the same metric.
-- Unique metrics (reach, unique impressions, unique viewers) are deduplicated per day. Do not sum daily rows for a weekly or monthly total. On Facebook Pages, request `week_iso` or `year_month` together with `period` and check that `period` is week or month before reporting a deduplicated total. On other platforms, report daily values or say a deduplicated period total is not available.
+- Unique metrics (reach, unique impressions, unique viewers) are deduplicated per day. Do not sum daily rows for a weekly or monthly total. On Facebook Pages, request `year_week_iso` or `year_month` together with `period` and check that `period` is week or month before reporting a deduplicated total. On other platforms, report daily values or say a deduplicated period total is not available.
 - Engagement rate needs a denominator. Use reach or impressions (or the platform's own rate field, such as LinkedIn's `share_engagement_rate`), say which, and say when the denominator is zero.
 - Follower fields differ: some are the current total, some are a daily change. Check the description in get_fields before reporting growth.
 - If a field the user wants is not in get_fields, say so rather than substituting a different metric.
