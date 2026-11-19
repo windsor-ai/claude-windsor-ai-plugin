@@ -61,8 +61,11 @@ substituting a different one. There is no cost/spend data here.
 
 1. Call `get_connectors` to pick the page; ask if several are connected.
 2. Call `list_actions` for `linkedin_organic` and read the schema of
-   `create_post` or `create_image_post`; an image post needs a publicly
-   reachable image URL.
+   `create_post` or `create_image_post`. An image post takes a public image
+   URL or an `image_urn`. If the user has a local image file instead, call
+   `upload_files` with action `upload_image`, run the `curl` command it returns with the
+   user's file path (no widget appears in an IDE), and use the returned `image_urn`;
+   uploading publishes nothing.
 3. Draft the post as text first and show it in full, exactly as it will
    appear, then wait for an explicit yes. Never publish placeholder text.
 4. Call `execute_action` once and report the result from the tool, including

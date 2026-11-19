@@ -1,6 +1,6 @@
 ---
 name: google-business-profile
-description: Analyze Google Business Profile (local listing) performance and manage it through Windsor.ai. Use when the user asks about a business location's insights — views, clicks, and impressions — reviews and ratings, or local post performance. It can also publish or update a local post, reply to a review, upload a photo, update location details (address, categories, service area), or update hours and open status, always after the user confirms the exact change. Do not use for paid Google Ads, organic Google Search Console, GA4, or other platforms.
+description: Analyze Google Business Profile (local listing) performance and manage it through Windsor.ai. Use when the user asks about a business location's insights — views, clicks, and impressions — reviews and ratings, or local post performance. It can also publish, update or delete a local post, reply to a review, upload or delete a photo, update location details (address, categories, service area), or update hours and open status, always after the user confirms the exact change. Do not use for paid Google Ads, organic Google Search Console, GA4, or other platforms.
 ---
 
 # Google Business Profile via Windsor.ai
@@ -11,7 +11,8 @@ id is `google_my_business`. Pass `google_my_business` as the connector on every
 tool call; the Windsor.ai server serves all connectors, so it is never implied.
 
 Reads are the main job. The connector also exposes write actions, currently
-`create_local_post`, `update_local_post`, `reply_to_review`, `upload_media`,
+`create_local_post`, `update_local_post`, `delete_local_post`, `reply_to_review`,
+`upload_media`, `delete_media`,
 `update_location`, `update_address`, `update_categories`, `update_service_area`,
 `update_attributes`, `update_service_items`, `set_regular_hours`,
 `set_special_hours`, and `set_open_status` (the live set is whatever

@@ -1,11 +1,11 @@
 ---
 name: facebook-ads
-description: Analyze and manage Meta Ads (Facebook & Instagram ad placements) through Windsor.ai. Use when the user asks about their Facebook Ads / Meta Ads performance — pulling live campaign, ad set, or ad metrics (spend, impressions, clicks, conversions, CPA, ROAS), comparing date ranges, or finding top or underperforming campaigns — or when they want to create, pause, or enable a campaign, ad set, or ad, change a budget, boost an existing post, or edit ad creative. Do not use for other ad platforms (Google Ads, TikTok, LinkedIn, Microsoft Ads), organic Facebook Page posts or Instagram organic content, or designing/generating ad creative images.
+description: Analyze and manage Meta Ads (Facebook & Instagram ad placements) through Windsor.ai. Use when the user asks about their Facebook Ads / Meta Ads performance — pulling campaign, ad set, or ad metrics (spend, impressions, clicks, conversions, CPA, ROAS), comparing date ranges, or finding top or underperforming campaigns — or when they want to create, pause, or enable a campaign, ad set, or ad, change a budget, boost an existing post, edit ad creative or targeting, duplicate an ad set, look up targeting interests or locations, or create a lead form (Instant Form). Do not use for other ad platforms (Google Ads, TikTok, LinkedIn, Microsoft Ads), organic Facebook Page posts or Instagram organic content, or designing/generating ad creative images.
 ---
 
 # Facebook Ads via Windsor.ai
 
-Windsor.ai exposes live Meta Ads data (read) and a set of campaign management
+Windsor.ai exposes Meta Ads data (read) and a set of campaign management
 actions (write) for Facebook and Instagram ad placements through MCP tools.
 The connector id is `facebook`. Pass `facebook` as the connector on every tool call; the Windsor.ai server
 serves all connectors, so it is never implied.
@@ -100,6 +100,39 @@ the summary below as guidance, not gospel. They cover:
   the post as the creative; created paused).
 - **Messaging:** `set_page_welcome_message` (set the automated greeting shown
   when someone opens a conversation from a Click-to-Message ad).
+- **Duplicate:** `duplicate_adset` copies an ad set with its targeting, budget
+  and schedule, into the same campaign or another one (`campaign_id`), and
+  with its ads when `deep_copy` is true. The copy is paused unless
+  `status_option` says otherwise. There is no delete action, so a copy can be
+  paused but not removed: confirm before copying, and do not repeat a copy
+  that reported a partial result.
+- **Images and video:** `create_ad_image` uploads image files from the chat
+  (it has `requires_files`, so it runs through `upload_files`; in an IDE
+  no widget appears, so run the one-time `curl` command it returns with the
+  user's file paths) and returns one
+  `image_hash` per image for `create_ad`. `create_ad_video` takes a public
+  `video_url`, waits for Meta to process it and returns a `video_id` for
+  `create_ad`, which then also needs a thumbnail. If Meta cannot fetch the
+  video, report the error and ask for another URL; do not retry the same one.
+  Uploads cannot be undone by an action.
+- **Lead forms:** `create_lead_form` creates an Instant Form on a Facebook
+  Page (questions, privacy policy URL, optional intro screen and end-screen
+  link). Attach it in `create_ad` through
+  `object_story_spec.link_data.call_to_action.value.lead_gen_form_id`, in an ad
+  set with `destination_type` ON_AD of an OUTCOME_LEADS campaign. Meta does
+  not allow editing or deleting a form: create a new one and archive the old
+  one with `set_lead_form_status`. The connected Facebook user needs the
+  Advertise task on the page.
+- **Targeting lookups:** `search_targeting` (interests, behaviors, job titles
+  and other demographics, by keyword) and `search_locations` (countries,
+  regions, cities, postal codes) are read-only and return the ids and keys
+  that `create_adset` and `update_adset` take in `targeting`. They change
+  nothing, so they need no confirmation. Never invent a targeting id: look it
+  up, and check that each returned name fits what the user meant, because
+  Meta returns broad suggestions when nothing matches.
+
+An action named above that `list_actions` does not return is not available on
+this connection yet: say so, and do not try to run it.
 
 Budget and creation mechanics:
 
@@ -108,8 +141,8 @@ Budget and creation mechanics:
 - Budget actions (`set_campaign_budget`, `set_adset_budget`, `spend_cap`) set
   an **absolute** value, not a delta. To "raise by 20%", read the current
   value first, compute the new absolute amount, and set that.
-- `create_campaign`, `create_adset`, `create_ad`, and `boost_post` all
-  produce **paused** objects by default, so nothing spends until the user
+- `create_campaign`, `create_adset`, `create_ad`, `boost_post` and
+  `duplicate_adset` all produce **paused** objects by default, so nothing spends until the user
   enables it.
 
 Write workflow — every time:

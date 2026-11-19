@@ -1,13 +1,12 @@
 ---
 name: google-ads
-description: Analyze and manage Google Ads through Windsor.ai. Use when the user asks about their Google Ads performance — pulling live campaign, ad group, or keyword metrics (cost, impressions, clicks, conversions, CPA, ROAS), comparing date ranges, or finding top or underperforming campaigns — or when they want to pause or enable a campaign or change a campaign budget. Do not use for other ad platforms (Meta/Facebook, TikTok, LinkedIn, Microsoft Ads), organic social, or GA4/website analytics.
+description: "Analyze and manage Google Ads through Windsor.ai. Use when the user asks about their Google Ads performance, such as pulling live campaign, ad group, or keyword metrics (cost, impressions, clicks, conversions, CPA, ROAS), comparing date ranges, or finding top or underperforming campaigns, or when they want to pause or enable campaigns, ad groups or ads, change budgets, bids or bidding strategies, add keywords or negative keywords, set targeting, or create campaigns (Search, Display or Performance Max), ad groups, asset groups and responsive search ads. Do not use for other ad platforms (Meta/Facebook, TikTok, LinkedIn, Microsoft Ads), organic social, or GA4/website analytics."
 ---
 
 # Google Ads via Windsor.ai
 
-Windsor.ai exposes live Google Ads data (read) and a small set of campaign
-management actions (write) through MCP tools. The connector id is
-`google_ads`. Pass `google_ads` as the connector on every tool call; the Windsor.ai server
+Windsor.ai exposes live Google Ads data (read) and a broad set of campaign
+management actions (write) through MCP tools. The connector id is `google_ads`. Pass `google_ads` as the connector on every tool call; the Windsor.ai server
 serves all connectors, so it is never implied.
 
 Golden rules:
@@ -19,12 +18,12 @@ Golden rules:
   after the user has confirmed the specific change.
 - Report numbers the user asked for, concisely. Don't dump raw rows unless asked.
 
-## 1. Ground yourself first
+## 1. Check what is connected
 
 Call `get_connectors` to see which Google Ads accounts are connected (each has
 an id and, usually, a name). If none are connected, help the user connect one:
 call `get_connector_authorization_url` (or `get_connector_connect_info` for the
-auth type and steps) and give them the setup link — do not describe manual
+auth type and steps) and give them the setup link; do not describe manual
 dashboard navigation.
 
 If the user names an account, match it to a connected account id. If several are
@@ -34,16 +33,17 @@ connected and the request is ambiguous, ask which account.
 
 1. Call `get_fields` for `google_ads` to get valid field ids (e.g. campaign,
    ad_group, date, cost/spend, impressions, clicks, conversions, conversion
-   value — use the exact ids returned, not these examples).
+   value. Use the exact ids returned, not these examples).
 2. If the analysis needs attribution or segmentation controls, call
    `get_options` to see the connector's options and valid values.
 3. Call `get_data` with:
    - `fields`: the ids you actually need (keep the set small).
    - `accounts`: the target account id(s); omit for all connected accounts.
    - A date range: either `date_from`/`date_to` (`"2026-02-01"`), or
-     `date_preset` — `last_7d`, `last_30d`, `last_Xd`/`last_Xw`/`last_Xm`,
+     `date_preset`: `last_7d`, `last_30d`, `last_Xd`/`last_Xw`/`last_Xm`,
      `this_month`, `this_year`, `last_year`. Append `T` to include today
-     (e.g. `last_7dT`, `this_monthT`).
+     (e.g. `last_7dT`, `this_monthT`); `T` works on `last_Xd`, `this_month`,
+     `this_year` and `last_year`, not on `last_Xw` or `last_Xm`.
    - `options`: only if get_options showed relevant ones.
    - `filters`: optional conditions, e.g. `[["cost", "gt", 100]]`; combine with
      `"and"`/`"or"` and nest as needed.
@@ -58,33 +58,59 @@ Common requests → recipe:
 - **Efficiency:** cost per conversion = cost ÷ conversions; ROAS = conversion
   value ÷ cost. Compute from returned fields; note if conversions are zero.
 
-Watch out: Google Ads money fields are in the account currency (state it if
-known). Conversions can be fractional. If a field the user wants isn't in
+Watch out: most Google Ads money fields (spend, cost, `budget_amount`) are in
+the account currency (state it if known); fields ending in `_micros`, and
+`recommended_budget_amount`, `keyword_average_cpc` and `top_of_page_bid_*`,
+are in micros. Check the field description. Conversions can be fractional. If a field the user wants isn't in
 `get_fields`, say so rather than substituting a different metric.
 
 ## 3. Managing campaigns (write actions)
 
 Google Ads exposes a broad set of write actions via `list_actions` /
 `execute_action`. Always call `list_actions` first for the exact ids and JSON
-schemas — treat the summary below as guidance, not gospel. They cover:
+schemas, and treat the summary below as a guide. They cover:
 
 - **Create / structure:** `create_campaign` (Search or Display, with a daily
-  budget; created paused), `create_ad_group`, `create_responsive_search_ad`
-  (3–15 headlines, 2–4 descriptions, a final URL; created paused).
+  budget; created paused), `create_ad_group`, `create_ad_asset`,
+  `rename_campaign`, `rename_ad_group`, `update_ad_group`,
+  `create_responsive_search_ad`
+  (3 to 15 headlines, 2 to 4 descriptions, a final URL; created paused).
+- **Performance Max:** `create_performance_max_campaign` creates the campaign
+  in one request, with its daily budget, its bidding (`maximize_conversions`
+  with an optional target CPA, or `maximize_conversion_value` with an optional
+  target ROAS), its business name and logos, and its first asset group.
+  `create_asset_group` adds another asset group to an existing Performance Max
+  campaign. An asset group needs 3 to 15 headlines (30 characters), 1 to 5
+  long headlines (90), 2 to 5 descriptions (90), a final URL, at least one
+  landscape image (1.91:1) and one square image (1:1); the campaign also needs
+  a business name (25 characters) and a square logo. Images and logos are
+  existing image assets of the account, passed by the asset id that the Google
+  Ads asset library shows. These actions cannot upload or design images, so
+  ask the user for the asset ids and never invent them or the ad copy. The
+  campaign is created paused; an asset group added later is created enabled
+  and serves as soon as the campaign does, so say that when you confirm.
+  Performance Max campaigns have no ad groups or keywords, so
+  `create_ad_group`, `create_responsive_search_ad` and the keyword actions do
+  not apply to them. Retail Performance Max with a Merchant Center feed,
+  audience signals and search themes are not available.
 - **Status:** `pause_campaign` / `enable_campaign`, `pause_ad_group` /
   `enable_ad_group`, `pause_ad` / `enable_ad`.
-- **Keywords:** `push_keywords` (add positive keywords to an ad group),
-  `update_keywords`, `remove_keywords`, and `push_negative_keywords`
-  (campaign- or ad-group-level).
+- **Keywords:** `push_keywords` (add positive keywords to an ad group; they are created
+  paused by default),
+  `update_keywords`, `remove_keywords`, `push_negative_keywords` and
+  `remove_negative_keywords` (campaign- or ad-group-level).
+- **Targeting and schedule:** `set_campaign_geo_targeting`,
+  `set_campaign_language_targeting`, `set_ad_schedule`.
 - **Budget & bidding:** `set_campaign_budget` (`daily` or `lifetime`, with
   `apply_to_shared_budget` for shared budgets), `set_campaign_bidding_strategy`
   (manual CPC, target CPA/ROAS, maximize conversions/clicks, …),
-  `set_target_cpa`, `set_cpc_bid_ceiling`, `set_max_cpc`.
+  `set_target_cpa`, `set_target_roas` (a ratio: 4.0 = 400%, not micros),
+  `set_cpc_bid_ceiling`, `set_max_cpc`.
 - **Customer Match audiences:** `create_customer_match_list`,
-  `upload_customer_match_list` (async — poll `get_customer_match_upload_status`),
+  `upload_customer_match_list` (async; poll `get_customer_match_upload_status`),
   `rename_customer_match_list`, `delete_customer_match_list`, and
   `attach_user_list_to_ad_group` / `detach_user_list_from_ad_group`. Upload
-  members as raw email/phone/address — the action hashes them; matching runs in
+  members as raw email/phone/address; the action hashes them; matching runs in
   the background and the list isn't targetable until it completes.
 
 Budget mechanics:
@@ -94,22 +120,23 @@ Budget mechanics:
 - `set_campaign_budget` / targets set an **absolute** value, not a delta. To
   "raise by 20%", read the current value first, compute the new absolute
   amount, and set that.
-- `create_*` actions produce **paused** campaigns/ad groups/ads by default, so
-  nothing serves until the user enables it.
+- `create_campaign`, `create_ad_group` and `create_responsive_search_ad`
+  produce **paused** items by default, so nothing serves until the user enables
+  it. A new Performance Max campaign is created paused as well. `create_ad_asset` has no status, so the asset can start serving once
+  created (call and sitelink assets after Google's review).
 
-Write workflow — every time:
+Write workflow; every time:
 
 1. Resolve the campaign to its `campaign_id` (via a `get_data` read on
    `campaign` + id fields if the user gave a name).
 2. Build the exact params from the `list_actions` schema.
-3. **Show the user the concrete change and ask them to confirm** — e.g.
+3. **Show the user the concrete change and ask them to confirm**; e.g.
    "Pause campaign 'Summer Sale' (id 123…) on account 456…?" or "Set daily
    budget for campaign X to €50.00 (50000000 micros)?".
 4. Only after an explicit yes, call `execute_action` and report the result.
 
 If the user says "pause the worst campaign", first do the read + ranking, then
-name the specific campaign and confirm before pausing — don't pause on the
-strength of the aggregate alone.
+name the specific campaign and confirm before pausing; don't pause based on the totals alone.
 
 ## 4. Reference the user's data, don't fabricate
 

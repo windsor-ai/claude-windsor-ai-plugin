@@ -1,6 +1,6 @@
 ---
 name: facebook-organic
-description: Analyze Facebook Page (organic) performance through Windsor.ai. Use when the user asks about their Facebook Page's organic insights — reach, impressions, engagement, reactions, follows/fans, or the performance of individual posts, videos, and Reels, by date/week/month or by country. It can also publish a photo post or a text and link post to a Page, always after the user approves the full draft. Do not use for Facebook Ads (those live in the Meta/Facebook Ads connector), boosting posts, Instagram, or other platforms.
+description: Analyze Facebook Page (organic) performance through Windsor.ai. Use when the user asks about their Facebook Page's organic insights — reach, impressions, engagement, reactions, follows/fans, or the performance of individual posts, videos, and Reels, by date/week/month or by country. It can also publish a photo post or a text and link post to a Page, edit or delete a post, or reply to a Messenger message, always after the user approves the full draft. Do not use for Facebook Ads (those live in the Meta/Facebook Ads connector), boosting posts, Instagram, or other platforms.
 ---
 
 # Facebook Organic (Pages) via Windsor.ai
@@ -10,8 +10,12 @@ The connector id is `facebook_organic`. Pass `facebook_organic` as the connector
 serves all connectors, so it is never implied.
 
 Reads are the main job. The connector also exposes write actions, currently
-`create_post` and `create_photo_post` (the live set is whatever `list_actions`
-returns). It has **no ad or cost data** (Facebook Ads live in the Meta/Facebook
+`create_post`, `create_photo_post`, `upload_photo` (uploads an image file and
+returns a `photo_id`, publishes nothing), `update_post` (replaces the text of a
+post published through Windsor.ai only), `delete_post` (permanent, cannot be
+undone) and `send_message` (a Messenger text reply to someone who messaged the
+Page, accepted only within 24 hours of their last message). The live set is
+whatever `list_actions` returns. It has **no ad or cost data** (Facebook Ads live in the Meta/Facebook
 Ads connector, so route ad-spend and boost requests there), it does not cover
 Instagram, and it does not change Page settings; say those are out of scope
 here.
@@ -62,8 +66,11 @@ substituting a different one. There is no cost/spend data here.
 
 1. Call `get_connectors` to pick the Page; ask if several are connected.
 2. Call `list_actions` for `facebook_organic` and read the schema of
-   `create_post` or `create_photo_post`; a photo post needs a publicly
-   reachable image URL.
+   `create_post` or `create_photo_post`. A photo post takes a public image
+   URL or a `photo_id`. If the user has a local image file instead, call
+   `upload_files` with action `upload_photo`, run the `curl` command it returns with the
+   user's file path (no widget appears in an IDE), and use the returned `photo_id`;
+   uploading publishes nothing.
 3. Draft the post as text first and show it in full, exactly as it will
    appear, then wait for an explicit yes. Never publish placeholder text.
 4. Call `execute_action` once and report the result from the tool, including

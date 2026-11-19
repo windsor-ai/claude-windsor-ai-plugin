@@ -45,5 +45,5 @@ Lead with the requested result, then state the source and account, the time wind
 - Connecting, reconnecting, adding an account, or asking what is connected -> /windsor-connect
 - Recurring exports and syncs -> /windsor-export
 - All clients, many accounts at once, or more than five accounts on a platform -> portfolio-analyst agent
-- Joining CRM, store, or accounting records to ad spend -> attribution-analyst agent
+- Joining CRM, store, or accounting records to ad spend -> blended-revenue-analyst agent
 After a report that surfaces an underperformer, offer once to open /windsor-manage for it. Never offer plans, upgrades, or pricing.
