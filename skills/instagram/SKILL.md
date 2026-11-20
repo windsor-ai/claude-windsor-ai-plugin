@@ -1,6 +1,6 @@
 ---
 name: instagram
-description: Analyze Instagram organic performance through Windsor.ai. Use when the user asks about their Instagram Business or Creator account's insights — followers, reach, impressions, profile or website clicks, engagement, or the performance of individual media/posts. It can also publish image, carousel, video (Reels) and story posts and reply to, hide, unhide or delete comments, always after the user confirms the exact change. Do not use for Instagram Ads (those live in the Meta/Facebook Ads connector), other platforms, or GA4/website analytics.
+description: Analyze Instagram organic performance through Windsor.ai. Use when the user asks about their Instagram Business or Creator account's insights — followers, reach, impressions, profile or website clicks, engagement, or the performance of individual media/posts. It can also publish image, carousel, video (Reels) and story posts reply to, hide, unhide or delete comments, and delete a published post, always after the user confirms the exact change. Do not use for Instagram Ads (those live in the Meta/Facebook Ads connector), other platforms, or GA4/website analytics.
 ---
 
 # Instagram (organic) via Windsor.ai
@@ -14,7 +14,9 @@ publishing and comment moderation. It has **no ad or cost data** (Instagram Ads
 live in the Meta/Facebook Ads connector, so route ad-spend questions there).
 Write actions today are `create_image_post`, `create_carousel_post`,
 `create_video_post`, `create_story`, `create_comment`, `reply_to_comment`,
-`hide_comment`, `unhide_comment` and `delete_comment`; the live set is whatever
+`hide_comment`, `unhide_comment`, `delete_comment` and `delete_media` (deletes a
+published post, Reel, story or carousel; a carousel can only be deleted as a
+whole); the live set is whatever
 `list_actions` returns.
 
 Golden rules:
@@ -24,7 +26,8 @@ Golden rules:
 - **Publishing and comment changes are public and immediate.** Show the exact
   caption, media URLs, or reply text and call `execute_action` only after an
   explicit yes. `delete_comment` cannot be undone; prefer `hide_comment` unless
-  the user asks to delete.
+  the user asks to delete. `delete_media` is permanent too: name the post
+  (caption, date, type) and confirm before deleting.
 - Report what the user asked for, concisely.
 
 ## 1. Ground yourself first

@@ -1,6 +1,6 @@
 ---
 name: facebook-organic
-description: Analyze Facebook Page (organic) performance through Windsor.ai. Use when the user asks about their Facebook Page's organic insights — reach, impressions, engagement, reactions, follows/fans, or the performance of individual posts, videos, and Reels, by date/week/month or by country. It can also publish a photo post or a text and link post to a Page, edit or delete a post, or reply to a Messenger message, always after the user approves the full draft. Do not use for Facebook Ads (those live in the Meta/Facebook Ads connector), boosting posts, Instagram, or other platforms.
+description: Analyze Facebook Page (organic) performance through Windsor.ai. Use when the user asks about their Facebook Page's organic insights — reach, impressions, engagement, reactions, follows/fans, or the performance of individual posts, videos, and Reels, by date/week/month or by country. It can also publish a photo, video, Reel, or text and link post to a Page, schedule a post, edit or delete a post, or reply to a Messenger message, always after the user approves the full draft. Do not use for Facebook Ads (those live in the Meta/Facebook Ads connector), boosting posts, Instagram, or other platforms.
 ---
 
 # Facebook Organic (Pages) via Windsor.ai
@@ -10,7 +10,9 @@ The connector id is `facebook_organic`. Pass `facebook_organic` as the connector
 serves all connectors, so it is never implied.
 
 Reads are the main job. The connector also exposes write actions, currently
-`create_post`, `create_photo_post`, `upload_photo` (uploads an image file and
+`create_post`, `create_photo_post`, `create_video_post` and `create_reel` (both
+from a public video URL; a Reel is vertical, 3 to 90 seconds),
+`list_scheduled_posts`, `upload_photo` (uploads an image file and
 returns a `photo_id`, publishes nothing), `update_post` (replaces the text of a
 post published through Windsor.ai only), `delete_post` (permanent, cannot be
 undone) and `send_message` (a Messenger text reply to someone who messaged the
@@ -70,7 +72,12 @@ substituting a different one. There is no cost/spend data here.
    URL or a `photo_id`. If the user has a local image file instead, call
    `upload_files` with action `upload_photo`, run the `curl` command it returns with the
    user's file path (no widget appears in an IDE), and use the returned `photo_id`;
-   uploading publishes nothing.
+   uploading publishes nothing. For a video use `create_video_post`, or
+   `create_reel` for a short vertical video; both need a public URL that
+   points at the file itself. To schedule a text, link or photo post, set
+   `scheduled_publish_time` (UTC, 10 minutes to 29 days ahead) and say the
+   time in the user's zone in the confirmation; `list_scheduled_posts` shows
+   what is scheduled and `delete_post` cancels one.
 3. Draft the post as text first and show it in full, exactly as it will
    appear, then wait for an explicit yes. Never publish placeholder text.
 4. Call `execute_action` once and report the result from the tool, including

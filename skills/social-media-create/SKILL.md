@@ -1,12 +1,12 @@
 ---
 name: social-media-create
-description: Create new items on Instagram, Facebook Pages, TikTok, YouTube, LinkedIn Pages, and Google Business Profile through Windsor.ai - publish image, video, carousel, and story posts and comment on posts on Instagram; publish text and photo posts on Facebook Pages; publish text and image posts on LinkedIn Pages; create posts, reply to reviews, and update photos, hours, and open status on Google Business Profile. Use when the user wants to create, publish, or post something new. Collect inputs, show the full draft, create only after confirmation.
+description: Create new items on Instagram, Facebook Pages, TikTok, YouTube, LinkedIn Pages, Threads, and Google Business Profile through Windsor.ai - publish image, video, carousel, and story posts and comment on posts on Instagram; publish text, photo and video posts and Reels on Facebook Pages, now or scheduled; publish text and image posts on LinkedIn Pages; publish text and image posts and replies on Threads; reply to comments on YouTube; create posts, reply to reviews, and update photos, hours, and open status on Google Business Profile. Use when the user wants to create, publish, or post something new. Collect inputs, show the full draft, create only after confirmation.
 ---
 
 # Create on social media
 
 Create new items on connected social media accounts through Windsor.ai:
-publish image, video, carousel, and story posts and comment on posts on Instagram; publish text and photo posts on Facebook Pages; publish text and image posts on LinkedIn Pages; create posts, reply to reviews, and update photos, hours, and open status on Google Business Profile. The main connector ids for this area are instagram, facebook_organic, tiktok_organic, youtube, linkedin_organic, google_my_business. Other sources in the same category work the same way; find their ids with get_connectors.
+publish image, video, carousel, and story posts and comment on posts on Instagram; publish text, photo and video posts and Reels on Facebook Pages, now or scheduled; publish text and image posts on LinkedIn Pages; publish text and image posts and replies on Threads; reply to comments on YouTube; create posts, reply to reviews, and update photos, hours, and open status on Google Business Profile. The main connector ids for this area are instagram, facebook_organic, tiktok_organic, youtube, linkedin_organic, threads, google_my_business. TikTok is read-only. Other sources in the same category work the same way; find their ids with get_connectors.
 
 ## Non-negotiable contract
 - Interpret create, make, build, publish, post, and launch as a creation request for this skill.
@@ -27,7 +27,7 @@ publish image, video, carousel, and story posts and comment on posts on Instagra
 - Do not generate images, videos, or copy the user did not ask for. If the user wants creative help, draft it as text for approval first.
 
 ## Stay in scope
-- Changing or removing an existing item (hide, unhide, or delete an Instagram comment; update a Google Business Profile listing or post) follows the same steps: read the item first, show the exact change, and execute only after an explicit yes. Prefer hiding over deleting a comment unless the user asks to delete.
+- Changing or removing an existing item (hide, unhide, or delete an Instagram comment or delete a published Instagram post; edit, delete or cancel a scheduled Facebook Page post; moderate a YouTube comment or update a video's details or playlists; update a Google Business Profile listing or post) follows the same steps: read the item first, show the exact change, and execute only after an explicit yes. Prefer hiding over deleting a comment unless the user asks to delete.
 - Reporting -> /social-media-insights.
 - Connecting an account -> /windsor-connect.
 

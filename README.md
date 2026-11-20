@@ -6,7 +6,7 @@ Manage and analyze Google Ads, Meta Ads, Instagram, TikTok Ads, LinkedIn Ads and
 
 - **Report on ad accounts:** campaigns, ad groups, keywords, search terms, quality score, impression share, spend, conversions and cost per conversion, across one platform or several at once
 - **Report on Instagram:** post reach, saves, engagement and follower growth
-- **Make changes after you confirm:** pause or enable campaigns, change budgets, set Google Ads bids and bidding strategies, create Google Ads Search and Performance Max campaigns and responsive search ads, push negative keywords, build Meta Ads campaigns, ad sets, ads and lead forms, update Google Merchant Center products, publish Instagram posts, carousels, reels and stories and Facebook Page, LinkedIn and Google Business Profile posts, and reply to, hide or delete Instagram comments
+- **Make changes after you confirm:** pause or enable campaigns, change budgets, set Google Ads bids and bidding strategies, create Google Ads Search and Performance Max campaigns and responsive search ads, push negative keywords, build Meta Ads campaigns, ad sets, ads and lead forms, update Google Merchant Center products, publish Instagram posts, carousels, reels and stories, Facebook Page posts, videos and Reels, and LinkedIn and Google Business Profile posts, reply to, hide or delete Instagram comments, and reply to and moderate YouTube comments and update video details
 - **Combine sources:** ad spend next to GA4 sessions, CRM deals or Shopify orders
 - **Use the data in code:** seed dashboards, generate fixtures and TypeScript types, build data pipelines
 
